@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Women in STEM</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Women<span>STEM</span></div>
+    <div class="nav-links">
+      <a href="#map-section">Map</a>
+      <a href="#trend-section">Trends</a>
+      <a href="#fields-section">Fields</a>
+      <a href="#scatter-section">Analysis</a>
+      <a href="#stories-section">Stories</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Data storytelling project</p>
+      <h1>Women in STEM — Shaping the Future</h1>
+      <p class="hero-description">
+        An interactive visualization of female graduates in STEM across countries,
+        years and global development indicators.
+      </p>
+      <a href="#map-section" class="btn">Explore the data</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+      <div class="glass-card hero-card">
+        <h3>Why it matters</h3>
+        <p>
+          STEM education shapes innovation, technology and scientific progress.
+          Understanding gender representation helps reveal where change is needed.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="kpi-section">
+    <div class="kpi-card">
+      <h2 id="countryCount">0</h2>
+      <p>Countries in dataset</p>
+    </div>
+    <div class="kpi-card">
+      <h2 id="yearRange">—</h2>
+      <p>Available years</p>
+    </div>
+    <div class="kpi-card">
+      <h2 id="globalAverage">—</h2>
+      <p>Average women in STEM</p>
+    </div>
+  </section>
+
+  <main>
+    <section id="map-section" class="section">
+      <div class="section-header">
+        <p class="eyebrow">Global picture</p>
+        <h2>Where are women graduating in STEM?</h2>
+        <p>
+          The map shows the share of women among STEM graduates by country.
+          Select a year and hover over a country for details.
+        </p>
+      </div>
+
+      <div class="controls">
+        <label for="yearSelect">Year</label>
+        <select id="yearSelect"></select>
+      </div>
+
+      <div class="chart-card">
+        <svg id="worldMap"></svg>
+      </div>
+    </section>
+
+    <section id="trend-section" class="section two-column">
+      <div class="section-header">
+        <p class="eyebrow">Trends</p>
+        <h2>Change through time</h2>
+        <p>
+          Compare how female participation in STEM graduation changed across selected countries.
+        </p>
+
+        <div class="controls vertical">
+          <label>Choose countries</label>
+          <div class="country-dropdown">
+            <button id="countryDropdownBtn" class="dropdown-btn" type="button">Select countries</button>
+            <div id="countryCheckboxList" class="checkbox-list"></div>
+            <button id="resetCountriesBtn" class="reset-btn" type="button">Reset selection</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <svg id="lineChart"></svg>
+      </div>
+    </section>
+
+    <section id="fields-section" class="section two-column reverse">
+      <div class="chart-card">
+        <svg id="barChart"></svg>
+      </div>
+
+      <div class="section-header">
+        <p class="eyebrow">Fields of study</p>
+        <h2>STEM compared to other fields</h2>
+        <p>
+          This chart compares the female share of graduates across different tertiary education fields.
+        </p>
+
+        <div class="controls vertical field-control">
+            <label>Choose country</label>
+
+            <div class="country-dropdown">
+                <button id="fieldCountryBtn" class="dropdown-btn" type="button">
+                Select country
+                </button>
+
+                <div id="fieldCountryList" class="checkbox-list"></div>
+            </div>
+
+            <label>Sort fields</label>
+
+            <div class="sort-buttons">
+                <button class="sort-btn active" data-sort="default">Default</button>
+                <button class="sort-btn" data-sort="desc">Highest first</button>
+                <button class="sort-btn" data-sort="asc">Lowest first</button>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="scatter-section" class="section">
+      <div class="section-header">
+        <p class="eyebrow">Contextual analysis</p>
+        <h2>STEM and development indicators</h2>
+        <p>
+          Explore whether economic and social indicators are related to the share of women in STEM.
+        </p>
+      </div>
+
+      <div class="controls">
+        <label for="indicatorSelect">Indicator</label>
+        <select id="indicatorSelect"></select>
+      </div>
+
+      <div class="chart-card">
+        <svg id="scatterPlot"></svg>
+      </div>
+    </section>
+
+    <section id="stories-section" class="section">
+      <div class="section-header center">
+        <p class="eyebrow">Faces behind progress</p>
+        <h2>Women who changed science</h2>
+        <p>Data shows the challenge. These stories show the impact.</p>
+      </div>
+
+        <div class="story-grid">
+
+            <div class="story-card">
+                <div class="story-avatar">
+                <img src="images/ada.png" alt="Ada Lovelace">
+                </div>
+
+                <h3>Ada Lovelace</h3>
+
+                <p>
+                Mathematician and early computing visionary often considered
+                the first computer programmer.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <div class="story-avatar">
+                <img src="images/marie.jpg" alt="Marie Curie">
+                </div>
+
+                <h3>Marie Curie</h3>
+
+                <p>
+                Physicist and chemist whose discoveries transformed
+                modern science and medicine.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <div class="story-avatar">
+                <img src="images/katherine.jpg" alt="Katherine Johnson">
+                </div>
+
+                <h3>Katherine Johnson</h3>
+
+                <p>
+                NASA mathematician whose calculations were essential
+                for early space missions.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <div class="story-avatar">
+                <img src="images/vera.jpg" alt="Vera Rubin">
+                </div>
+
+                <h3>Vera Rubin</h3>
+
+                <p>
+                Astronomer whose work provided strong evidence
+                for the existence of dark matter.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <div class="story-avatar">
+                <img src="images/chien.jpg" alt="Chien-Shiung Wu">
+                </div>
+
+                <h3>Chien-Shiung Wu</h3>
+
+                <p>
+                Experimental physicist known for groundbreaking
+                work in nuclear physics.
+                </p>
+            </div>
+
+        </div>
+    </section>
+  </main>
+
+  <div id="tooltip" class="tooltip"></div>
+
+  <footer>
+    <p>Data source: World Bank Gender Data Portal / UNESCO Institute for Statistics</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
